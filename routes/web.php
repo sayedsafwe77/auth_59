@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\InvoiceController;
+use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware(['cors'])->group(function () {
     Route::get('/', function () {
-        $user = auth()->id();
-        return view('welcome');
+        // if( !Gate::allows('admin'))
+        // {
+        //     abort(403);
+        // }
+        // $user = auth()->id();
+
+        return view('frontend.homepage');
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
+Route::resource('invoice', InvoiceController::class);
 Auth::routes();
 
