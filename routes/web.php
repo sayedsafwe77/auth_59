@@ -27,6 +27,7 @@ Route::middleware(['cors'])->group(function () {
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
+Route::view('vue','vue-componant');
 
 Route::resource('invoice', InvoiceController::class);
 Auth::routes();
